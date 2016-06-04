@@ -1,2 +1,2 @@
 # leetcode
-at least solve one problem every day
+busy with exam..
