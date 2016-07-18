@@ -1,10 +1,8 @@
+# This is the solution of No.23 problem in LeetCode
+# Use heap to reduce the time complexity
+
 import heapq
 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
 class Solution(object):
     def mergeKLists(self, lists):
         """
@@ -12,25 +10,19 @@ class Solution(object):
         :rtype: ListNode
         """
         heap = []
-        dic = {}
-        for x in lists:
-            if x != None:
-                heapq.heappush(heap, x.val)
-                dic[x.val] = x
-        if len(heap) == 0:
-            return []
-        
-        head = dic[heapq.heappop(heap)]
-        if head.next != None:
-            heapq.heappush(heap, head.next.val)
-            dic[head.next.val] = head.next
-        node = head
-        while(len(heap) > 0):
-            i = heapq.heappop(heap)
-            x = dic[i]
-            node.next = x
-            if x.next != None:
-                heapq.heappush(heap, x.next.val)
-                dic[x.next.val] = x.next
-            node = x
+        head = None
+        for node in lists:
+            if node != None:
+                heapq.heappush(heap, (node.val, node))
+        if len(heap) > 0:
+            preNode = head = heapq.heappop(heap)[1]
+            if preNode.next != None:
+                heapq.heappush(heap, (preNode.next.val, preNode.next))
+        while len(heap) > 0:
+            node = heapq.heappop(heap)[1]
+            preNode.next = node
+            preNode = node
+            if preNode.next != None:
+                heapq.heappush(heap, (node.next.val, node.next))
         return head
+
