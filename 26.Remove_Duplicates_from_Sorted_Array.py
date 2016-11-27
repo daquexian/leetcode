@@ -6,16 +6,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        ret = 0
         i = 0
-        while i < len(nums):
-            if i > 0 and nums[i] == nums[i - 1]:
-                nums.remove(nums[i])
-                continue
-            ret += 1
-            i += 1
-        return ret
+        for n in nums:
+            if i < 1 or n > nums[i - 1]:
+                nums[i] = n
+                i += 1
+        print nums[:i]
+        return i
 
 nums = eval(sys.argv[1])
 print Solution().removeDuplicates(nums)
-print nums
