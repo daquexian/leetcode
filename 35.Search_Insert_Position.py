@@ -1,7 +1,9 @@
-# This is the solution of No.35 problem in LeetCode, https://leetcode.com/problems/search-insert-position/
+# This is the solution of No.35 problem in LeetCode,
+# https://leetcode.com/problems/search-insert-position/
 # It's a variant of binary search.
 
 import sys
+
 
 class Solution(object):
     def searchInsert(self, nums, target):
@@ -28,4 +30,4 @@ class Solution(object):
 
 nums = eval(sys.argv[1])
 target = eval(sys.argv[2])
-print Solution().searchInsert(nums, target)
+print(Solution().searchInsert(nums, target))
